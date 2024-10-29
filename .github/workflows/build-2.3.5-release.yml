@@ -19,10 +19,11 @@ jobs:
           java-version: '8'  # 根据需要设置Java版本
           distribution: 'temurin'
 
-      - name: Build with Maven
-        run: |
-          mvn clean spotless:apply  # 使用Maven构建项目，跳过测试
-          mvn clean package -pl seatunnel-dist -am -Dmaven.test.skip=true
+      - name: Build with Maven spotless
+        run: mvn clean spotless:apply  # 使用Maven构建项目，跳过测试
+
+      - name: Build with Maven package
+        run: mvn clean package -pl seatunnel-dist -am -Dmaven.test.skip=true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
